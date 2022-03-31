@@ -1,12 +1,75 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('aa')));
-  }
+  State<Home> createState() => _HomeState();
 }
 
-//https://www.google.com/search?q=search+list+in+flutter&newwindow=1&rlz=1C5CHFA_enKR771KR781&sxsrf=APq-WBs2awLOxVvTmdIDMl2LnmlumoVXDA%3A1648715224172&ei=2GVFYoGSCvzu2roP7tCv8Ag&ved=0ahUKEwiB3pbq9u_2AhV8t1YBHW7oC44Q4dUDCA4&uact=5&oq=search+list+in+flutter&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAEMsBOgcIABBHELADOgYIABAIEB5KBAhBGABKBAhGGABQ9QNY7Qxgmw1oAXABeAGAAbkCiAGMCpIBBzAuOS4wLjGYAQCgAQHIAQrAAQE&sclient=gws-wiz#kpvalbx=_42VFYqbWC9LK2roP4NiysAY17
+class _HomeState extends State<Home> {
+  late TextEditingController _searchController;
+
+  @override
+  void initState() {
+    _searchController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SafeArea(
+      child: Column(
+        children: [
+          Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
+            color: Colors.brown,
+            shadowColor: Colors.grey,
+            elevation: 5.5,
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 5, 3, 3),
+                child: TextField(
+                  //textAlignVertical: TextAlignVertical.bot,
+                  style: const TextStyle(color: Colors.white, fontSize: 18),
+                  controller: _searchController,
+                  onChanged: (value) {},
+                  decoration: InputDecoration(
+                      hintStyle: const TextStyle(color: Colors.white54),
+                      border: InputBorder.none,
+                      suffixIcon: IconButton(
+                        splashRadius: 20.0,
+                        onPressed: () {
+                          setState(() {
+                            _searchController.clear();
+                          });
+                        },
+                        icon: const Icon(Icons.cancel),
+                        color: Colors.white,
+                      ),
+                      hintText: 'Characters'),
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 1 / 1.5,
+                  crossAxisSpacing: 5.0),
+              itemBuilder: (context, index) {
+                return Card(
+                  color: Colors.amber,
+                );
+              },
+              itemCount: 500,
+            ),
+          )
+        ],
+      ),
+    ));
+  }
+}
