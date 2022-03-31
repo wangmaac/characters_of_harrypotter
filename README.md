@@ -1,6 +1,8 @@
 # characters_of_harrypotter
 
 A new Flutter project.
+This app is only for my wife
+She is a big fan of HarryPotter book series.
 
 ## Getting Started
 
