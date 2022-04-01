@@ -32,7 +32,6 @@ class _HomeState extends State<Home> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 5, 3, 3),
                 child: TextField(
-                  //textAlignVertical: TextAlignVertical.bot,
                   style: const TextStyle(color: Colors.white, fontSize: 18),
                   controller: _searchController,
                   onChanged: (value) {},
@@ -54,15 +53,25 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
+          const SizedBox(
+            height: 10,
+          ),
           Expanded(
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 1 / 1.5,
+                  childAspectRatio: 1 / 1.3,
+                  mainAxisSpacing: 5.0,
                   crossAxisSpacing: 5.0),
               itemBuilder: (context, index) {
                 return Card(
-                  color: Colors.amber,
+                  elevation: 5.5,
+                  shadowColor: Colors.grey,
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          topRight: Radius.circular(10))),
+                  color: Colors.brown.shade100,
                 );
               },
               itemCount: 500,
