@@ -13,7 +13,7 @@ _$_Character _$$_CharacterFromJson(Map<String, dynamic> json) => _$_Character(
       gender: json['gender'] as String,
       house: json['house'] as String,
       dateOfBirth: json['dateOfBirth'] as String,
-      yearOfBirth: json['yearOfBirth'] as int,
+      yearOfBirth: Character.convertStringToInt(json['yearOfBirth']),
       wizard: json['wizard'] as bool,
       ancestry: json['ancestry'] as String,
       eyeColour: json['eyeColour'] as String,

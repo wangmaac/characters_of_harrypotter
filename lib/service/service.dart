@@ -1,14 +1,8 @@
-import 'package:flutter/material.dart';
-
 import '../database/database.dart';
-
+import '../models/character.dart';
 
 class MyService {
-
-
-
-  fetchData(){
-    database.map((e) => null).tolist
+  fetchData() {
+    return database.map((one) => Character.fromJson(one)).toList();
   }
-
 }

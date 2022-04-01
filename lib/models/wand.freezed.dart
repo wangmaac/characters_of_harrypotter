@@ -23,7 +23,9 @@ class _$WandTearOff {
   const _$WandTearOff();
 
   _Wand call(
-      {required String wood, required String core, required int length}) {
+      {required String wood,
+      required String core,
+      @JsonKey(fromJson: Wand.converted) required double length}) {
     return _Wand(
       wood: wood,
       core: core,
@@ -43,7 +45,8 @@ const $Wand = _$WandTearOff();
 mixin _$Wand {
   String get wood => throw _privateConstructorUsedError;
   String get core => throw _privateConstructorUsedError;
-  int get length => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: Wand.converted)
+  double get length => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +57,10 @@ mixin _$Wand {
 abstract class $WandCopyWith<$Res> {
   factory $WandCopyWith(Wand value, $Res Function(Wand) then) =
       _$WandCopyWithImpl<$Res>;
-  $Res call({String wood, String core, int length});
+  $Res call(
+      {String wood,
+      String core,
+      @JsonKey(fromJson: Wand.converted) double length});
 }
 
 /// @nodoc
@@ -83,7 +89,7 @@ class _$WandCopyWithImpl<$Res> implements $WandCopyWith<$Res> {
       length: length == freezed
           ? _value.length
           : length // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -93,7 +99,10 @@ abstract class _$WandCopyWith<$Res> implements $WandCopyWith<$Res> {
   factory _$WandCopyWith(_Wand value, $Res Function(_Wand) then) =
       __$WandCopyWithImpl<$Res>;
   @override
-  $Res call({String wood, String core, int length});
+  $Res call(
+      {String wood,
+      String core,
+      @JsonKey(fromJson: Wand.converted) double length});
 }
 
 /// @nodoc
@@ -123,7 +132,7 @@ class __$WandCopyWithImpl<$Res> extends _$WandCopyWithImpl<$Res>
       length: length == freezed
           ? _value.length
           : length // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -131,7 +140,10 @@ class __$WandCopyWithImpl<$Res> extends _$WandCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Wand implements _Wand {
-  _$_Wand({required this.wood, required this.core, required this.length});
+  _$_Wand(
+      {required this.wood,
+      required this.core,
+      @JsonKey(fromJson: Wand.converted) required this.length});
 
   factory _$_Wand.fromJson(Map<String, dynamic> json) => _$$_WandFromJson(json);
 
@@ -140,7 +152,8 @@ class _$_Wand implements _Wand {
   @override
   final String core;
   @override
-  final int length;
+  @JsonKey(fromJson: Wand.converted)
+  final double length;
 
   @override
   String toString() {
@@ -179,7 +192,7 @@ abstract class _Wand implements Wand {
   factory _Wand(
       {required String wood,
       required String core,
-      required int length}) = _$_Wand;
+      @JsonKey(fromJson: Wand.converted) required double length}) = _$_Wand;
 
   factory _Wand.fromJson(Map<String, dynamic> json) = _$_Wand.fromJson;
 
@@ -188,7 +201,8 @@ abstract class _Wand implements Wand {
   @override
   String get core;
   @override
-  int get length;
+  @JsonKey(fromJson: Wand.converted)
+  double get length;
   @override
   @JsonKey(ignore: true)
   _$WandCopyWith<_Wand> get copyWith => throw _privateConstructorUsedError;

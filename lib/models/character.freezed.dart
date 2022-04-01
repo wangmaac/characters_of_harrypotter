@@ -29,7 +29,7 @@ class _$CharacterTearOff {
       required String gender,
       required String house,
       required String dateOfBirth,
-      required int yearOfBirth,
+      @JsonKey(fromJson: Character.convertStringToInt) required int yearOfBirth,
       required bool wizard,
       required String ancestry,
       required String eyeColour,
@@ -81,6 +81,7 @@ mixin _$Character {
   String get gender => throw _privateConstructorUsedError;
   String get house => throw _privateConstructorUsedError;
   String get dateOfBirth => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: Character.convertStringToInt)
   int get yearOfBirth => throw _privateConstructorUsedError;
   bool get wizard => throw _privateConstructorUsedError;
   String get ancestry => throw _privateConstructorUsedError;
@@ -112,7 +113,7 @@ abstract class $CharacterCopyWith<$Res> {
       String gender,
       String house,
       String dateOfBirth,
-      int yearOfBirth,
+      @JsonKey(fromJson: Character.convertStringToInt) int yearOfBirth,
       bool wizard,
       String ancestry,
       String eyeColour,
@@ -260,7 +261,7 @@ abstract class _$CharacterCopyWith<$Res> implements $CharacterCopyWith<$Res> {
       String gender,
       String house,
       String dateOfBirth,
-      int yearOfBirth,
+      @JsonKey(fromJson: Character.convertStringToInt) int yearOfBirth,
       bool wizard,
       String ancestry,
       String eyeColour,
@@ -400,7 +401,8 @@ class _$_Character implements _Character {
       required this.gender,
       required this.house,
       required this.dateOfBirth,
-      required this.yearOfBirth,
+      @JsonKey(fromJson: Character.convertStringToInt)
+          required this.yearOfBirth,
       required this.wizard,
       required this.ancestry,
       required this.eyeColour,
@@ -430,6 +432,7 @@ class _$_Character implements _Character {
   @override
   final String dateOfBirth;
   @override
+  @JsonKey(fromJson: Character.convertStringToInt)
   final int yearOfBirth;
   @override
   final bool wizard;
@@ -537,7 +540,7 @@ abstract class _Character implements Character {
       required String gender,
       required String house,
       required String dateOfBirth,
-      required int yearOfBirth,
+      @JsonKey(fromJson: Character.convertStringToInt) required int yearOfBirth,
       required bool wizard,
       required String ancestry,
       required String eyeColour,
@@ -567,6 +570,7 @@ abstract class _Character implements Character {
   @override
   String get dateOfBirth;
   @override
+  @JsonKey(fromJson: Character.convertStringToInt)
   int get yearOfBirth;
   @override
   bool get wizard;

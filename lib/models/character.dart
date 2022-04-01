@@ -13,7 +13,8 @@ class Character with _$Character {
       required String gender,
       required String house,
       required String dateOfBirth,
-      required int yearOfBirth,
+      @JsonKey(fromJson: Character.convertStringToInt)  required int
+          yearOfBirth,
       required bool wizard,
       required String ancestry,
       required String eyeColour,
@@ -29,4 +30,16 @@ class Character with _$Character {
 
   factory Character.fromJson(Map<String, dynamic> json) =>
       _$CharacterFromJson(json);
+
+  static int convertStringToInt(dynamic yearOfBirth) {
+    if (yearOfBirth.runtimeType == String) {
+      if (yearOfBirth == "") {
+        return 0;
+      } else {
+        return int.parse(yearOfBirth);
+      }
+    } else {
+      return yearOfBirth.toInt();
+    }
+  }
 }
