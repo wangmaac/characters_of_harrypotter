@@ -10,7 +10,6 @@ class CharacterCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var readProviderInstance =
         Provider.of<CharacterViewModel>(context, listen: false);
-
     return Card(
       elevation: 5.5,
       shadowColor: Colors.grey,
@@ -24,7 +23,7 @@ class CharacterCard extends StatelessWidget {
           Expanded(
               child: ClipRRect(
             child: Image.network(
-              readProviderInstance.getList[index].image,
+              readProviderInstance.selectedList[index].image,
               errorBuilder: (context, object, trace) {
                 return const Center(
                   child: Text('Preparing the picture.'),
@@ -49,8 +48,8 @@ class CharacterCard extends StatelessWidget {
           Container(
             color: Colors.red,
             height: 30,
-            child:
-                Center(child: Text(readProviderInstance.getList[index].name)),
+            child: Center(
+                child: Text(readProviderInstance.selectedList[index].name)),
           ),
         ],
       ),

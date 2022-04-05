@@ -43,31 +43,59 @@ class _SelectedCharacterCardState extends State<SelectedCharacterCard> {
             ? Transform(
                 transform: Matrix4.identity()..rotateY(pi),
                 alignment: FractionalOffset.center,
-                child: Container(
-                  color: Colors.brown,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('${readProviderInstance.getCharacter.name}'),
-                      Text('${readProviderInstance.getCharacter.species}'),
-                      Text('${readProviderInstance.getCharacter.gender}'),
-                      Text('${readProviderInstance.getCharacter.house}'),
-                      Text('${readProviderInstance.getCharacter.dateOfBirth}'),
-                      Text('${readProviderInstance.getCharacter.yearOfBirth}'),
-                      Text('${readProviderInstance.getCharacter.wizard}'),
-                      Text('${readProviderInstance.getCharacter.ancestry}'),
-                      Text('${readProviderInstance.getCharacter.eyeColour}'),
-                      Text('${readProviderInstance.getCharacter.hairColour}'),
-                      Text('${readProviderInstance.getCharacter.wand}'),
-                      Text(
-                          '${readProviderInstance.getCharacter.hogwartsStudent}'),
-                      Text(
-                          '${readProviderInstance.getCharacter.hogwartsStaff}'),
-                      Text('${readProviderInstance.getCharacter.actor}'),
-                      Text(
-                          '${readProviderInstance.getCharacter.alternate_actors}'),
-                      Text('${readProviderInstance.getCharacter.alive}'),
-                    ],
+                child: DefaultTextStyle(
+                  style: const TextStyle(fontSize: 15, color: Colors.black),
+                  child: Container(
+                    color: Colors.brown,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text('name:'),
+                            Text('species:'),
+                            Text('gender:'),
+                            Text('house:'),
+                            Text('wizard:'),
+                            Text('ancestry:'),
+                            Text('actor:')
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('${readProviderInstance.getCharacter.name}'),
+                            Text(
+                                '${readProviderInstance.getCharacter.species}'),
+                            Text('${readProviderInstance.getCharacter.gender}'),
+                            Text('${readProviderInstance.getCharacter.house}'),
+/*                          Text(
+                                '${readProviderInstance.getCharacter.dateOfBirth}'),
+                            Text(
+                                '${readProviderInstance.getCharacter.yearOfBirth}'),*/
+                            Text('${readProviderInstance.getCharacter.wizard}'),
+                            Text(
+                                '${readProviderInstance.getCharacter.ancestry}'),
+/*                          Text(
+                                '${readProviderInstance.getCharacter.eyeColour}'),
+                            Text(
+                                '${readProviderInstance.getCharacter.hairColour}'),
+                            Text('${readProviderInstance.getCharacter.wand}'),
+                            Text(
+                                '${readProviderInstance.getCharacter.hogwartsStudent}'),
+                            Text(
+                                '${readProviderInstance.getCharacter.hogwartsStaff}'),*/
+                            Text('${readProviderInstance.getCharacter.actor}'),
+/*                          Text(
+                                '${readProviderInstance.getCharacter.alternate_actors}'),
+                            Text('${readProviderInstance.getCharacter.alive}'),*/
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               )

@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:characters_of_harrypotter/models/character.dart';
@@ -20,18 +19,31 @@ class _HomeState extends State<Home> {
   late TextEditingController _searchController;
   Character? selectedCharacter;
 
+  late CharacterViewModel readProviderInstance;
+  late CharacterViewModel watchProviderInstance;
+
+  bool vs = false;
+
   @override
   void initState() {
     _searchController = TextEditingController();
+    readProviderInstance =
+        Provider.of<CharacterViewModel>(context, listen: false);
+    readProviderInstance.initList();
     super.initState();
   }
 
   @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var readProviderInstance =
-        Provider.of<CharacterViewModel>(context, listen: false);
-    var watchProviderInstance =
+    watchProviderInstance =
         Provider.of<CharacterViewModel>(context, listen: true);
+
     return Scaffold(
         body: SafeArea(
       child: Stack(
@@ -50,7 +62,19 @@ class _HomeState extends State<Home> {
                     child: TextField(
                       style: const TextStyle(color: Colors.white, fontSize: 18),
                       controller: _searchController,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        if (value.isEmpty) {
+                          readProviderInstance.emptyList();
+                        } else {
+                          watchProviderInstance.setSelectedList(
+                              readProviderInstance.getList.where((element) {
+                            return (element.name
+                                .toString()
+                                .toLowerCase()
+                                .contains(value.toLowerCase()));
+                          }).toList());
+                        }
+                      },
                       decoration: InputDecoration(
                           hintStyle: const TextStyle(color: Colors.white54),
                           border: InputBorder.none,
@@ -59,6 +83,7 @@ class _HomeState extends State<Home> {
                             onPressed: () {
                               setState(() {
                                 _searchController.clear();
+                                watchProviderInstance.emptyList();
                               });
                             },
                             icon: const Icon(Icons.cancel),
@@ -83,19 +108,22 @@ class _HomeState extends State<Home> {
                     return GestureDetector(
                         onTap: () {
                           watchProviderInstance.setCharacter(
-                              readProviderInstance.getList[index]);
+                              watchProviderInstance.selectedList[index]);
+                          setState(() {
+                            vs = true;
+                          });
                         },
                         child: CharacterCard(
                           index: index,
                         ));
                   },
-                  itemCount: readProviderInstance.getRow,
+                  itemCount: watchProviderInstance.selectedList.length,
                 ),
               )
             ],
           ),
           Visibility(
-            visible: readProviderInstance.getCharacter == null ? false : true,
+            visible: vs,
             child: Stack(
               children: [
                 GestureDetector(
@@ -105,6 +133,9 @@ class _HomeState extends State<Home> {
                   ),
                   onTap: () {
                     watchProviderInstance.setCharacter(null);
+                    setState(() {
+                      vs = false;
+                    });
                   },
                 ),
                 Align(
@@ -116,7 +147,7 @@ class _HomeState extends State<Home> {
                         onTap: () {
                           ///coding rotation
                         },
-                        child: SelectedCharacterCard(),
+                        child: const SelectedCharacterCard(),
                       ),
                     ),
                   ),
